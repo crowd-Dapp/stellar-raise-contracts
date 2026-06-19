@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = [
+    "apps/contracts/*",
+]
+
+[workspace.dependencies]
+soroban-sdk = "25.3.0"
+serde = { version = "1.0", default-features = false, features = ["derive"] }
+toml = { version = "0.8", default-features = false }
+proptest = "1.5.0"
+
+[profile.release]
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true
+
+[profile.release-with-logs]
+inherits = "release"
+debug-assertions = true
